@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ecom Mastery Dropshipping Course</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Ecom Mastery Dropshipping Course</h1>
+    <p>Launch and scale a profitable dropshipping business today.</p>
+    <button id="buyButton">Buy Now – $297</button>
+  </header>
+
+  <section class="features">
+    <h2>What You'll Learn</h2>
+    <ul>
+      <li>✅ How to find winning products</li>
+      <li>✅ Store setup for conversions</li>
+      <li>✅ Facebook & IG ads mastery</li>
+      <li>✅ Scaling to 6-7 figures</li>
+    </ul>
+  </section>
+
+  <section class="testimonials">
+    <h2>What Students Say</h2>
+    <blockquote>"I made my first $10K month after taking this course!" – Alex D.</blockquote>
+    <blockquote>"This is the blueprint for real dropshipping success." – Nina S.</blockquote>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Ecom Mastery. All rights reserved.</p>
+  </footer>
+
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    document.getElementById("buyButton").addEventListener("click", async () => {
+      const res = await fetch("/create-checkout-session", { method: "POST" });
+      const data = await res.json();
+      const stripe = Stripe("pk_test_yourPublishableKeyHere");
+      stripe.redirectToCheckout({ sessionId: data.id });
+    });
+  </script>
+</body>
+</html>
